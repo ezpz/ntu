@@ -1,0 +1,18 @@
+NonTrivialUnion Class
+
+Extension of C++ unions that allow non-trivial types (those with user-
+defined constructors, standard containers, etc) to be part of the construct.
+
+Basically, I've ended up creating a subset of boost::variant that was useful 
+as an introduction to C++ template programming and language features I was not 
+familiar with (placement new operator). The machanics behind this differ from
+boost a bit (I still use the union type, boost does not) but the result is
+pretty similar.
+
+The class is limited to a maximum of 4 types and does not support a default
+constructor (both available in boost::variant) but the code is much smaller 
+and without the heavy macro magic of boost.
+
+The class supports type checked operations (assignment, copy, construct) as
+well as conversion operators to allow implicit casting. I've also provided
+a range checked operator[] for byte-level access to objects.
